@@ -32,7 +32,7 @@ const FormRegister = () => {
         toast.error("Terjadi kesalahan pada server.");
       } else {
         toast.success("Registrasi berhasil, silakan login.");
-        router.push("/auth/signin");
+        router.push("/auth/login");
       }
     } catch (error) {
       toast.error("Terjadi kesalahan. Silakan coba lagi.");

@@ -25,7 +25,9 @@ const Page = async ({ params }) => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">{beneficiary.title}</h1>
+      <h1 className="text-3xl font-bold mb-4 first-letter:uppercase">
+        {beneficiary.title}
+      </h1>
       <div className="text-md">
         <p className="text-gray-700 mb-2">{beneficiary.description}</p>
         <p className=" text-gray-600 mb-1">
@@ -66,7 +68,7 @@ const Page = async ({ params }) => {
                     {format(new Date(donation.createdAt), "dd MMM yyyy")}
                   </td>
                   <td className="border px-4 py-2">
-                    <Link href={`/donated/view/${donation.id}`}>
+                    <Link href={`/dashboard/donated/view/${donation.id}`}>
                       Lihat Detail
                     </Link>
                   </td>

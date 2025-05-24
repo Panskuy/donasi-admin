@@ -5,7 +5,11 @@ import React from "react";
 
 export default async function Home() {
   const penerimaDonasi = await prisma.sumbangan.findMany();
-  const user = await prisma.user.findMany();
+  const user = await prisma.user.findMany({
+    where: {
+      role: "user",
+    },
+  });
 
   return (
     <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
