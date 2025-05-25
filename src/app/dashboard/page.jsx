@@ -12,7 +12,7 @@ export default async function Home() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
+    <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
       {/* Kartu Penerima Donasi */}
       <Link
         href="/dashboard/beneficiary"

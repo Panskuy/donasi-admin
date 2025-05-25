@@ -7,7 +7,7 @@ const layout = ({ children }) => {
     <div className="flex w-full  max-w-[2000px] mx-auto gap-2 h-screen">
       <SideBar />
       <div className="w-full h-screen overflow-auto">
-        <div className="mt-6">{children}</div>
+        <div className="mt-6 pr-2">{children}</div>
       </div>
     </div>
   );
