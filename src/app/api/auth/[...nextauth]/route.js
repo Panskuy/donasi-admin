@@ -18,16 +18,15 @@ export const handler = NextAuth({
         });
 
         if (user && credentials?.password) {
-          // Verifikasi password menggunakan bcrypt
           const isPasswordValid = await bcrypt.compare(
             credentials.password,
             user.password
           );
           if (isPasswordValid) {
-            return user; // Password valid
+            return user;
           }
         }
-        return null; // Jika user tidak ditemukan atau password salah
+        return null;
       },
     }),
   ],

@@ -6,13 +6,11 @@ export async function PUT(req, { params }) {
   const { status_pengiriman } = await req.json();
 
   try {
-    // Update status di tabel Sumbangan
     await prisma.sumbangan.update({
       where: { id },
       data: { status_pengiriman },
     });
 
-    // Sinkronkan juga ke Donasi
     await prisma.donasi.updateMany({
       where: { sumbanganId: id },
       data: { status_pengiriman },

@@ -10,7 +10,7 @@ export async function POST(req) {
         amount,
         location,
         kategori,
-        imageUrl, // simpan URL gambar di sini
+        imageUrl,
       },
     });
 

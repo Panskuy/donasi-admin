@@ -6,7 +6,6 @@ export async function PUT(req, { params }) {
   const { isShow } = await req.json();
 
   try {
-    // Update status di tabel Sumbangan
     await prisma.sumbangan.update({
       where: { id },
       data: { isShow },

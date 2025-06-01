@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X } from "lucide-react"; // pastikan sudah install lucide-react
+import { X } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 

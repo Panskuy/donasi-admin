@@ -13,7 +13,6 @@ export default async function Home() {
 
   return (
     <div className="mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 ">
-      {/* Kartu Penerima Donasi */}
       <Link
         href="/dashboard/beneficiary"
         className="group bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 flex justify-between items-center"
@@ -32,7 +31,6 @@ export default async function Home() {
         />
       </Link>
 
-      {/* Kartu Donatur */}
       <Link
         href="/users"
         className="group bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 flex justify-between items-center"

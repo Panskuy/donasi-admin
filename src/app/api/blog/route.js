@@ -14,7 +14,6 @@ export async function POST(req) {
       );
     }
 
-    // Pastikan sumbangan terkait ada
     const sumbangan = await prisma.sumbangan.findUnique({
       where: { id: sumbanganId },
     });
@@ -26,7 +25,6 @@ export async function POST(req) {
       );
     }
 
-    // Buat blog baru
     const blog = await prisma.blog.create({
       data: {
         title,

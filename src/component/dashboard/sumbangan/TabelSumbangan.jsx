@@ -11,12 +11,12 @@ import {
 import { useRouter } from "next/navigation";
 
 const STATUS_OPTIONS = [
-  "menunggu konfirmasi", // admin belum menyetujui
-  "dalam persiapan", // sedang dikemas atau disiapkan
-  "sedang dikirim", // sudah diserahkan ke kurir
-  "sampai tujuan", // penerima telah menerima
-  "selesai", // donasi ditutup
-  "dibatalkan", // jika donasi dibatalkan
+  "menunggu konfirmasi",
+  "dalam persiapan",
+  "sedang dikirim",
+  "sampai tujuan",
+  "selesai",
+  "dibatalkan",
 ];
 
 const TabelSumbangan = ({ sumbangan }) => {

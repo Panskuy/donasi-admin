@@ -11,6 +11,9 @@ const nextConfig = {
       {
         hostname: "kapilerindonesia.com",
       },
+      {
+        hostname: "i.pinimg.com",
+      },
     ],
   },
 };
