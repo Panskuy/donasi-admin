@@ -1,9 +1,7 @@
-import { NextResponse } from "next/server";
-import prisma from "@/lib/prisma";
-
 export async function POST(req) {
   try {
-    const { title, description, amount, location, kategori } = await req.json();
+    const { title, description, amount, location, kategori, imageUrl } =
+      await req.json();
 
     const result = await prisma.sumbangan.create({
       data: {
@@ -12,6 +10,7 @@ export async function POST(req) {
         amount,
         location,
         kategori,
+        imageUrl, // simpan URL gambar di sini
       },
     });
 

@@ -27,7 +27,8 @@ const FormLogin = () => {
     });
 
     if (res?.error) {
-      toast.error("Login gagal! Periksa email dan password Anda.");
+      toast.error("Login gagal!");
+      toast.error(" Pastikan anda login menggunakan akun ADMIN");
     } else {
       toast.success("Berhasil login!");
       router.push("/");
@@ -39,7 +40,7 @@ const FormLogin = () => {
   return (
     <div className=" w-full bg-white p-8 rounded-lg shadow-lg">
       <div className="text-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Logo</h1>
+        <h1 className="text-3xl font-bold text-gray-900">KASIBA ADMIN</h1>
         <p className="text-sm text-gray-500">Login Menggunakan Akun Admin</p>
       </div>
 

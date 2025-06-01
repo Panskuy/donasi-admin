@@ -1,9 +1,20 @@
 import React from "react";
 import prisma from "@/lib/prisma";
 import { format } from "date-fns";
+import { DonatedDeleteButton } from "@/component/dashboard/donated/DonatedDeleteButton";
+import { redirect } from "next/navigation";
+
+const statusColorMap = {
+  "menunggu konfirmasi": "bg-yellow-100 text-yellow-800",
+  "dalam persiapan": "bg-blue-100 text-blue-800",
+  "sedang dikirim": "bg-purple-100 text-purple-800",
+  "sampai tujuan": "bg-green-100 text-green-800",
+  selesai: "bg-gray-100 text-gray-800",
+  dibatalkan: "bg-red-100 text-red-800",
+};
 
 const Page = async ({ params }) => {
-  const { id } = params;
+  const { id } = await params;
 
   const viewDonated = await prisma.donasi.findUnique({
     where: {
@@ -11,43 +22,47 @@ const Page = async ({ params }) => {
     },
     include: {
       user: true,
+      sumbangan: true,
     },
   });
 
   if (!viewDonated) {
-    return (
-      <div className="p-6 text-center text-gray-500">
-        Data donasi tidak ditemukan.
-      </div>
-    );
+    return redirect("/dashboard/donated");
   }
 
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-8 space-y-6 ">
-      <h1 className="text-3xl font-bold text-gray-800">Detail Donasi</h1>
+  const status = viewDonated?.sumbangan?.status_pengiriman || "Tidak tersedia";
+  const badgeClass =
+    statusColorMap[status.toLowerCase()] || "bg-gray-100 text-gray-600";
 
-      {/* Donatur */}
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:bg-black/95 hover:border-black group transition-all">
-        <h2 className="text-lg font-semibold text-gray-700 mb-4 group-hover:text-gray-100">
+  return (
+    <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold text-gray-800">Detail Donasi</h1>
+        <DonatedDeleteButton id={viewDonated.id} />
+      </div>
+
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 group hover:bg-black/95 hover:border-black transition-all">
+        <h2 className="text-lg font-semibold text-gray-700 group-hover:text-gray-100 mb-4">
           Informasi Donatur
         </h2>
-        <div className="group-hover:text-gray-300 space-y-2">
+        <div className="space-y-2 group-hover:text-gray-300">
           <p>
-            <span className="font-medium">Nama:</span> {viewDonated.user.name}
+            <span className="font-medium">Nama:</span>{" "}
+            {viewDonated.user?.name || "-"}
           </p>
           <p>
-            <span className="font-medium">Email:</span> {viewDonated.user.email}
+            <span className="font-medium">Email:</span>{" "}
+            {viewDonated.user?.email || "-"}
           </p>
         </div>
       </div>
 
-      {/* Item Donasi */}
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:bg-black/95 hover:border-black group transition-all">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 group hover:bg-black/95 hover:border-black transition-all">
         <h2 className="text-lg font-semibold group-hover:text-gray-100 mb-4">
           Item Donasi
         </h2>
         {viewDonated.item && viewDonated.item.length > 0 ? (
-          <ul className="list-disc list-inside group-hover:text-gray-300 space-y-1">
+          <ul className="list-disc list-inside space-y-1 group-hover:text-gray-300">
             {viewDonated.item.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
@@ -57,18 +72,17 @@ const Page = async ({ params }) => {
         )}
       </div>
 
-      {/* Info Tambahan */}
-      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:bg-black/95 hover:border-black group transition-all">
+      <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 group hover:bg-black/95 hover:border-black transition-all">
         <h2 className="text-lg font-semibold group-hover:text-gray-100 mb-4">
           Informasi Tambahan
         </h2>
-        <div className="group-hover:text-gray-300 space-y-2 ">
+        <div className="space-y-2 group-hover:text-gray-300">
           <p>
             <span className="font-medium">ID Donasi:</span> {viewDonated.id}
           </p>
           <p>
             <span className="font-medium">ID Sumbangan:</span>{" "}
-            {viewDonated.sumbanganId}
+            {viewDonated.sumbanganId || "-"}
           </p>
           <p>
             <span className="font-medium">Tanggal Dibuat:</span>{" "}
@@ -77,6 +91,14 @@ const Page = async ({ params }) => {
           <p>
             <span className="font-medium">Terakhir Diperbarui:</span>{" "}
             {format(new Date(viewDonated.updatedAt), "dd MMM yyyy, HH:mm")}
+          </p>
+          <p>
+            <span className="font-medium">Status Pengiriman:</span>{" "}
+            <span
+              className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${badgeClass}`}
+            >
+              {status}
+            </span>
           </p>
         </div>
       </div>

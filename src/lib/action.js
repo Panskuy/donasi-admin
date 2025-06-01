@@ -12,9 +12,9 @@ export async function createSumbangan(formData) {
       kategori: data.kategori,
       description: data.description,
       location: data.location,
+      imageUrl: data.imageUrl,
     },
   });
-
   revalidatePath("/");
 }
 

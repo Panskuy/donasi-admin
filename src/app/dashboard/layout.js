@@ -1,5 +1,4 @@
 import SideBar from "@/component/dashboard/SideBar";
-import { Sidebar } from "lucide-react";
 import React from "react";
 
 const layout = ({ children }) => {

@@ -9,36 +9,36 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  name      String?
-  email     String    @unique
-   emailVerified DateTime?  
-  password  String?
-  image     String?
-  role      String?   @default("user")
-  donasi    Donasi[]
-
-  accounts  Account[]
-  sessions  Session[]
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  name          String?
+  email         String    @unique
+  password      String?
+  image         String?
+  role          String?   @default("user")
+  emailVerified DateTime?
+  phone         String?
+  accounts      Account[]
+  sessions      Session[]
+  comment       Comment[]
+  donasi        Donasi[]
 }
 
 model Account {
-  id                 String  @id @default(uuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?
-  access_token       String?
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?
-  session_state      String?
-
-  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -48,7 +48,6 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -61,26 +60,60 @@ model VerificationToken {
 }
 
 model Sumbangan {
-  id          String    @id @default(uuid())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  title       String
-  description String
-  kategori    String
-  location    String
-  donasi      Donasi[]
+  id                String    @id @default(uuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  title             String
+  description       String
+  kategori          String
+  location          String
+  status_pengiriman String?   @default("menunggu")
+  isShow            Boolean   @default(true)
+  imageUrl          String?
+  blog              Blog[]
+  comment           Comment[]
+  donasi            Donasi[]
 
   @@map("sumbangan")
 }
 
 model Donasi {
+  id                String    @id @default(uuid())
+  sumbanganId       String
+  item              String[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  userId            String?
+  status_pengiriman String?   @default("menunggu")
+  sumbangan         Sumbangan @relation(fields: [sumbanganId], references: [id], onDelete: Cascade)
+  user              User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("donasi")
+}
+
+model Comment {
   id          String    @id @default(uuid())
-  sumbanganId String
-  userId      String?    // nullable dulu untuk migrasi
-  item        String[]
+  content     String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-
+  userId      String
+  sumbanganId String
   sumbangan   Sumbangan @relation(fields: [sumbanganId], references: [id], onDelete: Cascade)
-  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("comment")
+}
+
+model Blog {
+  id          String    @id @default(uuid())
+  title       String
+  content     String
+  isShow      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  sumbanganId String
+  imageUrl    String?
+  sumbangan   Sumbangan @relation(fields: [sumbanganId], references: [id], onDelete: Cascade)
+
+  @@map("blog")
 }

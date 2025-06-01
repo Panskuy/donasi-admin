@@ -67,6 +67,7 @@ const TambahDonasiButton = () => {
                 >
                   <option value="panti asuhan">Panti Asuhan</option>
                   <option value="bencana banjir">Bencana Banjir</option>
+                  <option value="fakir miskin">Fakir Miskin</option>
                 </select>
               </div>
               <div>
@@ -93,6 +94,18 @@ const TambahDonasiButton = () => {
                   className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
                 />
               </div>
+              <div>
+                <label className="text-sm font-medium text-gray-700">
+                  Image Url
+                </label>
+                <input
+                  name="imageUrl"
+                  type="text"
+                  placeholder="https:imageurl"
+                  required
+                  className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700"
+                />
+              </div>
 
               <div className="flex justify-end mt-6 space-x-2">
                 <button
@@ -107,8 +120,8 @@ const TambahDonasiButton = () => {
                   disabled={loading}
                   className={`px-5 py-2 text-sm rounded-md text-white ${
                     loading
-                      ? "bg-green-400 cursor-not-allowed"
-                      : "bg-green-600 hover:bg-green-700"
+                      ? "bg-gray-700 cursor-not-allowed"
+                      : "bg-gray-700 hover:bg-gray-900"
                   } transition`}
                 >
                   {loading ? "Menyimpan..." : "Simpan"}

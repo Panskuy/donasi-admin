@@ -28,7 +28,7 @@ const SideBar = () => {
     <div className="w-1/6 border-r border-black/20  px-1 lg:px-4 py-4 ">
       <Link href={"/dashboard"}>
         <h1 className="font-bold text-3xl hidden lg:flex justify-center lg:justify-start">
-          Dashboard
+          KASIBA ADMIN
         </h1>
         <h1 className="font-bold text-3xl flex lg:hidden justify-center">
           <LayoutDashboard size={35} />

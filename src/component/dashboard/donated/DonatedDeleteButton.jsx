@@ -40,7 +40,7 @@ export const DonatedDeleteButton = ({ id }) => {
         </div>
       ),
       {
-        duration: 10000, // toast akan hilang dalam 10 detik jika tidak direspons
+        duration: 10000,
       }
     );
   };

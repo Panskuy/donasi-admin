@@ -4,7 +4,6 @@ import React from "react";
 
 const page = async () => {
   const user = await getUserSession();
-  console.log(user);
 
   if (user) {
     redirect("/dashboard");

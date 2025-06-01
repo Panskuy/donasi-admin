@@ -44,8 +44,8 @@ const FormRegister = () => {
   return (
     <div className="w-full mx-auto bg-white p-8 rounded-lg shadow-lg">
       <div className="text-center mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">Logo</h1>
-        <p className="text-sm text-gray-500">Registrasi Pengguna Baru</p>
+        <h1 className="text-3xl font-bold text-gray-900">KASIBA ADMIN</h1>
+        <p className="text-sm text-gray-500">Registrasi ADMIN Baru</p>
       </div>
 
       <form onSubmit={handleRegister} className="space-y-5">
