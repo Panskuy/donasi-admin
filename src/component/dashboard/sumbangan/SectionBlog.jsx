@@ -1,5 +1,6 @@
 import React from "react";
 import ButtonsBuatBlog from "./ButtonsBuatBlog";
+import { BlogDeleteButton } from "./Buttons";
 
 const SectionBlog = ({ data }) => {
   return (
@@ -15,11 +16,14 @@ const SectionBlog = ({ data }) => {
               return (
                 <div
                   key={item.id}
-                  className="bg-white border-b border-black/20 px-4 py-2 "
+                  className="bg-white border-b border-black/20 px-4 py-2 hover:bg-gray-100 transition-all rounded-lg"
                 >
-                  <h1 className="font-bold text-2xl first-letter:uppercase">
-                    {item.title}
-                  </h1>
+                  <div className="flex items-center justify-between">
+                    <h1 className="font-bold text-lg first-letter:uppercase">
+                      {item.title}
+                    </h1>
+                    <BlogDeleteButton id={item.id} />
+                  </div>
                   <h1 className="line-clamp-2">{item.content}</h1>
                 </div>
               );

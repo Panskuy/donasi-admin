@@ -30,7 +30,7 @@ const TabelDataDonasi = ({ beneficiary }) => {
                   {donation.item?.length || 0}
                 </td>
                 <td className="border px-4 py-2">
-                  {donation.item?.length || 0}
+                  {donation.status_pengiriman || 0}
                 </td>
                 <td className="border px-4 py-2">
                   {format(new Date(donation.createdAt), "dd MMM yyyy")}

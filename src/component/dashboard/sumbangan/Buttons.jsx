@@ -200,3 +200,31 @@ export const ButtonDeleteComment = ({ id }) => {
     </button>
   );
 };
+
+export const BlogDeleteButton = ({ id }) => {
+  const router = useRouter();
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`/api/blog/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Gagal Menghapus Blog");
+      }
+      router.refresh();
+      toast.success("Berhasil menghapus Blog");
+    } catch (error) {
+      console.error(error);
+      toast.error("Gagal menghapus Blog");
+    }
+  };
+  return (
+    <button
+      onClick={handleDelete}
+      className="text-red-600 p-2 hover:bg-red-600 hover:text-white transition-all rounded-lg"
+    >
+      <Trash width={20} height={20} />
+    </button>
+  );
+};
