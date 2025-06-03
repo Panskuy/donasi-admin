@@ -58,6 +58,7 @@ export const SumbanganDeleteButton = ({ id, title }) => {
 
 const STATUS_OPTIONS = [
   "menunggu konfirmasi",
+  "proses pengambilan barang",
   "dalam persiapan",
   "sedang dikirim",
   "sampai tujuan",

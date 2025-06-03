@@ -10,15 +10,6 @@ import {
 
 import { useRouter } from "next/navigation";
 
-const STATUS_OPTIONS = [
-  "menunggu konfirmasi",
-  "dalam persiapan",
-  "sedang dikirim",
-  "sampai tujuan",
-  "selesai",
-  "dibatalkan",
-];
-
 const TabelSumbangan = ({ sumbangan }) => {
   const router = useRouter();
 

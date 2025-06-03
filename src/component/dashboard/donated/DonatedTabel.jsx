@@ -51,6 +51,9 @@ const DonatedTabel = async () => {
               <th scope="col" className="px-6 py-3 text-left">
                 Status Pengiriman
               </th>
+              <th scope="col" className="px-6 py-3 text-left">
+                Alamat Penjemputan
+              </th>
               <th scope="col" className="px-6 py-3 text-center">
                 Action
               </th>
@@ -74,7 +77,7 @@ const DonatedTabel = async () => {
                     {item.sumbangan?.kategori || "-"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {item.sumbangan?.location || "-"}
+                    {item.sumbangan?.location || "belum diisi"}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {format(new Date(item.createdAt), "dd MMM yyyy")}
@@ -88,6 +91,9 @@ const DonatedTabel = async () => {
                     >
                       {item.sumbangan?.status_pengiriman || "Tidak ada"}
                     </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {item.user?.address || "-"}
                   </td>
                   <td className="px-6 py-4 flex justify-center items-center gap-2">
                     <DonatedDeleteButton id={item.id} />

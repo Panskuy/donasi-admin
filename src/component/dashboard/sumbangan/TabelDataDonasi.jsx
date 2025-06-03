@@ -17,6 +17,7 @@ const TabelDataDonasi = ({ beneficiary }) => {
               <th className="border px-4 py-2 text-left">Jumlah Item</th>
               <th className="border px-4 py-2 text-left">Status Pengiriman</th>
               <th className="border px-4 py-2 text-left">Tanggal Donasi</th>
+              <th className="border px-4 py-2 text-left">Alamat Penjemputan</th>
               <th className="border px-4 py-2 text-left">Action</th>
             </tr>
           </thead>
@@ -34,6 +35,9 @@ const TabelDataDonasi = ({ beneficiary }) => {
                 </td>
                 <td className="border px-4 py-2">
                   {format(new Date(donation.createdAt), "dd MMM yyyy")}
+                </td>
+                <td className="border px-4 py-2">
+                  {donation.user.address || "belum diisi"}
                 </td>
                 <td className="border px-4 py-2">
                   <Link href={`/dashboard/donated/view/${donation.id}`}>

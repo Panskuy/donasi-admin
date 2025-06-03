@@ -40,6 +40,7 @@ const Page = async ({ params }) => {
             email : <span>{user.email}</span>
           </h1>
           <h1>no telpon :{user.phone || "belum diisi"}</h1>
+          <h1>no telpon :{user.alamat || "belum diisi"}</h1>
         </div>
       </div>
 

@@ -18,6 +18,9 @@ const TabelSumbangan = async ({ users }) => {
                 Email
               </th>
               <th scope="col" className="px-6 py-3 text-left">
+                Alamat
+              </th>
+              <th scope="col" className="px-6 py-3 text-left">
                 Phone
               </th>
 
@@ -38,6 +41,9 @@ const TabelSumbangan = async ({ users }) => {
                   <td className="px-6 py-4 whitespace-nowrap">{item.email}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span>{item.phone || "belum di set"}</span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span>{item.address || "belum di set"}</span>
                   </td>
 
                   <td className="px-6 py-4 flex justify-center">

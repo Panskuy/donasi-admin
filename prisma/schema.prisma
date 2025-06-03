@@ -19,6 +19,7 @@ model User {
   role          String?   @default("user")
   emailVerified DateTime?
   phone         String?
+  address       String?
   accounts      Account[]
   sessions      Session[]
   comment       Comment[]
